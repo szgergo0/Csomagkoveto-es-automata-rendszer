@@ -19,6 +19,11 @@ public class Csomag
         KiszallitasiCim = szallitasiCim;
     }
 
+    public bool NyitokodEllenorzes(string kod)
+    {
+        return Nyitokod == kod;
+    }
+
     public string getNyitoKod()
     {
         return Nyitokod;
@@ -45,6 +50,8 @@ public class Csomag
         }
 
         File.WriteAllLines("csomagok.csv", sorok);
+
+        // TODO: HA A CSOMAG ATVETT ALAPPOTBA VAN NE TUDD FRISSITENI AZ ALLAPOTAT
     }
 
     // Egy sor a csv fájlba: cimzett;meret;statusz;nyitokod;feladasIdo;csomagAzonosito;szallitasiCim
