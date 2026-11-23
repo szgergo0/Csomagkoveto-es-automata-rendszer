@@ -33,26 +33,55 @@ public class Csomag
         return KiszallitasiCim;
     }
 
-    public void StatuszFrissit(string ujStatusz)
+
+    public bool AtmenetEngedelyezett(string ujStatusz)
     {
-        string[] sorok = File.ReadAllLines("csomagok.csv");
-
-        for (int i = 0; i < sorok.Length; i++)
-        {
-            string[] oszlopok = sorok[i].Split(';');
-
-            if (oszlopok.Length >= 7 && oszlopok[5] == CsomagAzonosito)
-            {
-                Statusz = ujStatusz;
-                sorok[i] = ToCsvSor();
-                break;
-            }
-        }
-
-        File.WriteAllLines("csomagok.csv", sorok);
-
-        // TODO: HA A CSOMAG ATVETT ALAPPOTBA VAN NE TUDD FRISSITENI AZ ALLAPOTAT
+    if (Statusz == "Feladva" && ujStatusz == "Kiszállítás alatt")
+    {
+        return true;
     }
+
+    if (Statusz == "Kiszállítás alatt" && ujStatusz == "Kiszállított")
+    {
+        return true;
+    }
+
+    if (Statusz == "Kiszállítás alatt" && ujStatusz == "Elutasított")
+    {
+        return true;
+    }
+
+    if (Statusz == "Kiszállított" && ujStatusz == "Átvett")
+    {
+        return true;
+    }
+
+    return false;
+    }
+
+    public bool StatuszFrissit(string ujStatusz)
+    {
+    if (!AtmenetEngedelyezett(ujStatusz)) return false;
+
+    string[] sorok = File.ReadAllLines("csomagok.csv");
+
+    for (int i = 0; i < sorok.Length; i++)
+    {
+        string[] oszlopok = sorok[i].Split(';');
+
+        if (oszlopok.Length >= 7 && oszlopok[5] == CsomagAzonosito)
+        {
+            Statusz = ujStatusz;
+            sorok[i] = ToCsvSor();
+            File.WriteAllLines("csomagok.csv", sorok);
+            return true;
+        }
+    }
+    return false;
+    }
+    // TODO: HA A CSOMAG ATVETT ALAPPOTBA VAN NE TUDD FRISSITENI AZ ALLAPOTAT
+  
+        
 
     // Egy sor a csv fájlba: cimzett;meret;statusz;nyitokod;feladasIdo;csomagAzonosito;szallitasiCim
     public string ToCsvSor()

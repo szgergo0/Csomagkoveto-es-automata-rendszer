@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\vsvri\\11\\git\\csomagkoveto-projekt\\Csomagkoveto-es-automata-rendszer\\csomagkoveto\\csomagkoveto\\Csomagkoveto.csproj": {}
+    "D:\\vsvri\\11\\git\\csomagkoveto-projekt\\Csomagkoveto-es-automata-rendszer\\Csomagkoveto\\Csomagkoveto\\Csomagkoveto.csproj": {}
   },
   "projects": {
-    "D:\\vsvri\\11\\git\\csomagkoveto-projekt\\Csomagkoveto-es-automata-rendszer\\csomagkoveto\\csomagkoveto\\Csomagkoveto.csproj": {
+    "D:\\vsvri\\11\\git\\csomagkoveto-projekt\\Csomagkoveto-es-automata-rendszer\\Csomagkoveto\\Csomagkoveto\\Csomagkoveto.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\vsvri\\11\\git\\csomagkoveto-projekt\\Csomagkoveto-es-automata-rendszer\\csomagkoveto\\csomagkoveto\\Csomagkoveto.csproj",
+        "projectUniqueName": "D:\\vsvri\\11\\git\\csomagkoveto-projekt\\Csomagkoveto-es-automata-rendszer\\Csomagkoveto\\Csomagkoveto\\Csomagkoveto.csproj",
         "projectName": "Csomagkoveto",
-        "projectPath": "D:\\vsvri\\11\\git\\csomagkoveto-projekt\\Csomagkoveto-es-automata-rendszer\\csomagkoveto\\csomagkoveto\\Csomagkoveto.csproj",
+        "projectPath": "D:\\vsvri\\11\\git\\csomagkoveto-projekt\\Csomagkoveto-es-automata-rendszer\\Csomagkoveto\\Csomagkoveto\\Csomagkoveto.csproj",
         "packagesPath": "C:\\Users\\Gergő\\.nuget\\packages\\",
-        "outputPath": "D:\\vsvri\\11\\git\\csomagkoveto-projekt\\Csomagkoveto-es-automata-rendszer\\csomagkoveto\\csomagkoveto\\obj\\",
+        "outputPath": "D:\\vsvri\\11\\git\\csomagkoveto-projekt\\Csomagkoveto-es-automata-rendszer\\Csomagkoveto\\Csomagkoveto\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Gergő\\AppData\\Roaming\\NuGet\\NuGet.Config"

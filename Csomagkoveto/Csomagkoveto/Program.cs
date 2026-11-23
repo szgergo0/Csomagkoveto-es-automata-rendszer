@@ -154,13 +154,19 @@ while (true)
         if (talaltCsomag == null)
         {
             Console.WriteLine("Nincs ilyen csomag!");
-        } else
+        }
+        else if (talaltCsomag.Statusz != "Kiszállított")
+    {
+        Console.WriteLine($"A csomag még nem vehető át (státusz: {talaltCsomag.Statusz})");
+    }
+         else
         {
             Console.Write("Adja meg a csomag nyitókódját: ");
             string nyitokod = Console.ReadLine();
             if (talaltCsomag.NyitokodEllenorzes(nyitokod))
             {
                 talaltCsomag.StatuszFrissit("Átvett");
+                Console.WriteLine("Csomag sikeresen átvéve!");
             }
             else
             {
@@ -183,17 +189,18 @@ while (true)
         }
 
         // Egy sor a csv fájlba: cimzett;meret;statusz;nyitokod;feladasIdo;csomagAzonosito;szallitasiCim
-
-        Console.WriteLine($"========================");
-        Console.WriteLine($"A csomag adatai:");
-        Console.WriteLine($"Címzett: {talaltCsomag.Cimzett}");
-        Console.WriteLine($"Mérete: {talaltCsomag.Meret}");
-        Console.WriteLine($"Státusza: {talaltCsomag.Statusz}");
-        Console.WriteLine($"Myitókódja: {talaltCsomag.getNyitoKod()}");
-        Console.WriteLine($"A csomagot ekkor adták fel: {talaltCsomag.FeladasIdo}");
-        Console.WriteLine($"Azonosítója: {talaltCsomag.CsomagAzonosito}");
-        Console.WriteLine($"Kiszállítási címe: {talaltCsomag.getSzallitasiCim()}");
-        Console.WriteLine($"========================");
+        else{
+            Console.WriteLine($"========================");
+            Console.WriteLine($"A csomag adatai:");
+            Console.WriteLine($"Címzett: {talaltCsomag.Cimzett}");
+            Console.WriteLine($"Mérete: {talaltCsomag.Meret}");
+            Console.WriteLine($"Státusza: {talaltCsomag.Statusz}");
+            Console.WriteLine($"Nyitókódja: {talaltCsomag.getNyitoKod()}");     //lets see
+            Console.WriteLine($"A csomagot ekkor adták fel: {talaltCsomag.FeladasIdo}");
+            Console.WriteLine($"Azonosítója: {talaltCsomag.CsomagAzonosito}");
+            Console.WriteLine($"Kiszállítási címe: {talaltCsomag.getSzallitasiCim()}");
+            Console.WriteLine($"========================");
+        }
     }
     else if (valasztas == "4")
     {
@@ -210,10 +217,15 @@ while (true)
         {
             Console.WriteLine("Nincs ilyen csomag!");
         }
+        else if (talaltCsomag.Statusz == "Átvett")
+    {
+        Console.WriteLine("Az átvett csomag állapota már nem módosítható!");
+    }
         else
         {
+            Console.WriteLine($"Jelenlegi állapot: {talaltCsomag.Statusz}");
             Console.WriteLine("Válasszon a műveletek közül egy szám beírásával: ");
-            Console.Write("Új állapot:\n1. A futár elindult a csomaggal\n2. A futár kiszállította a csomagot\n3. Hiba miatt a csomag el lett utasítva/vissza lett küldve");
+            Console.Write("Új állapot:\n1. A futár elindult a csomaggal\n2. A futár kiszállította a csomagot\n3. Hiba miatt a csomag el lett utasítva/vissza lett küldve ");
             string allapot = Console.ReadLine();
             while (allapot != "1" && allapot != "2" && allapot != "3")
             {
@@ -221,15 +233,28 @@ while (true)
                 allapot = Console.ReadLine();
             }
 
+            string ujStatusz;
             if (allapot == "1")
             {
-                talaltCsomag.StatuszFrissit("Kiszállítás alatt");
-            }else if (allapot == "2")
+                ujStatusz = "Kiszállítás alatt";
+            }
+            else if (allapot == "2")
             {
-                talaltCsomag.StatuszFrissit("Kiszállított");
-            } else if (allapot == "3")
+                ujStatusz = "Kiszállított";
+            }
+            else
             {
-                talaltCsomag.StatuszFrissit("Elutasított");
+                ujStatusz = "Elutasított";
+            }
+
+
+            if (talaltCsomag.StatuszFrissit(ujStatusz))
+            {
+                Console.WriteLine($"Az állapot módosítva: {ujStatusz}");
+            }
+            else
+            {
+                Console.WriteLine($"Ez az állapotváltás nem engedélyezett (jelenlegi állapot: {talaltCsomag.Statusz})!");
             }
         }
 
