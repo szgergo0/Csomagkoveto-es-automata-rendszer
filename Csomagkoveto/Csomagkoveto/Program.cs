@@ -93,11 +93,13 @@ Console.WriteLine("==============================================");
 
 while (true)
 {
+    Console.WriteLine("----------------------------------------------");
     Console.WriteLine("0. Kilépés");
     Console.WriteLine("1. Új csomag feladása");
     Console.WriteLine("2. Csomag átvétele");
     Console.WriteLine("3. Csomagkövetés");
     Console.WriteLine("4. Csomag állapotának megváltoztatása (Futár művelet)");
+    Console.WriteLine("----------------------------------------------");
     Console.WriteLine("Válasszon a műveletek közül egy szám beírásával: ");
     
     string valasztas = muveletValasztas();
@@ -137,9 +139,12 @@ while (true)
             csomagok.Add(uj);
 
             File.AppendAllText("csomagok.csv", uj.ToCsvSor() + Environment.NewLine);
-
+            
+            Console.WriteLine("----------------------------------------------");
             Console.WriteLine($"{feladasiIdo} Csomag sikeresen feladva!");
             Console.WriteLine($"Követési szám: {uj.CsomagAzonosito}");
+            Console.WriteLine($"A csomag nyitókódja: {nyitokod}");
+            Console.WriteLine("----------------------------------------------");
 
     }
     else if (valasztas == "2")
@@ -147,26 +152,31 @@ while (true)
         Console.Write("Adja meg a csomag azonosítóját: ");
         string azonosito = Console.ReadLine();
 
-        Csomag talaltCsomag = csomagok.FirstOrDefault(
-            c => c.CsomagAzonosito == azonosito
-        );
+        Csomag talaltCsomag = csomagok.FirstOrDefault(c => c.CsomagAzonosito == azonosito);
 
         if (talaltCsomag == null)
         {
             Console.WriteLine("Nincs ilyen csomag!");
-        }
-        else if (talaltCsomag.Statusz != "Kiszállított")
-    {
-        Console.WriteLine($"A csomag még nem vehető át (státusz: {talaltCsomag.Statusz})");
-    }
-         else
+        } else
         {
             Console.Write("Adja meg a csomag nyitókódját: ");
             string nyitokod = Console.ReadLine();
             if (talaltCsomag.NyitokodEllenorzes(nyitokod))
             {
-                talaltCsomag.StatuszFrissit("Átvett");
-                Console.WriteLine("Csomag sikeresen átvéve!");
+                if (talaltCsomag.Statusz == "Átvett")
+                {
+                    Console.WriteLine("Ez a csomag már át lett véve!");
+                }
+                else if (talaltCsomag.Statusz == "Kiszállított")
+                {
+                    talaltCsomag.StatuszFrissit("Átvett");
+                    Console.WriteLine("Helyes nyitókód, vegye át a csomagot!");
+                }
+                else
+                {
+                    Console.WriteLine("Ez a csomag még nem lett kiszállítva!");
+                }
+                
             }
             else
             {
@@ -179,27 +189,30 @@ while (true)
         Console.Write("Adja meg a csomag azonosítóját: ");
         string azonosito = Console.ReadLine();
 
-        Csomag talaltCsomag = csomagok.FirstOrDefault(
-            c => c.CsomagAzonosito == azonosito
-        );
-
+        Csomag talaltCsomag = csomagok.FirstOrDefault(c => c.CsomagAzonosito == azonosito);
         if (talaltCsomag == null)
         {
             Console.WriteLine("Nincs ilyen csomag!");
         }
+        else
+        {
+            Console.Write("Adja meg a csomag nyitókódját: ");
+            string nyitokod = Console.ReadLine();
+            if (talaltCsomag.NyitokodEllenorzes(nyitokod))
+            {
+                // Egy sor a csv fájlba: cimzett;meret;statusz;nyitokod;feladasIdo;csomagAzonosito;szallitasiCim
 
-        // Egy sor a csv fájlba: cimzett;meret;statusz;nyitokod;feladasIdo;csomagAzonosito;szallitasiCim
-        else{
-            Console.WriteLine($"========================");
-            Console.WriteLine($"A csomag adatai:");
-            Console.WriteLine($"Címzett: {talaltCsomag.Cimzett}");
-            Console.WriteLine($"Mérete: {talaltCsomag.Meret}");
-            Console.WriteLine($"Státusza: {talaltCsomag.Statusz}");
-            Console.WriteLine($"Nyitókódja: {talaltCsomag.getNyitoKod()}");     //lets see
-            Console.WriteLine($"A csomagot ekkor adták fel: {talaltCsomag.FeladasIdo}");
-            Console.WriteLine($"Azonosítója: {talaltCsomag.CsomagAzonosito}");
-            Console.WriteLine($"Kiszállítási címe: {talaltCsomag.getSzallitasiCim()}");
-            Console.WriteLine($"========================");
+                Console.WriteLine($"========================");
+                Console.WriteLine($"A csomag adatai:");
+                Console.WriteLine($"Címzett: {talaltCsomag.Cimzett}");
+                Console.WriteLine($"Mérete: {talaltCsomag.Meret}");
+                Console.WriteLine($"Státusza: {talaltCsomag.Statusz}");
+                Console.WriteLine($"Myitókódja: {talaltCsomag.getNyitoKod()}");
+                Console.WriteLine($"A csomagot ekkor adták fel: {talaltCsomag.FeladasIdo}");
+                Console.WriteLine($"Azonosítója: {talaltCsomag.CsomagAzonosito}");
+                Console.WriteLine($"Kiszállítási címe: {talaltCsomag.getSzallitasiCim()}");
+                Console.WriteLine($"========================");
+            }
         }
     }
     else if (valasztas == "4")
@@ -208,24 +221,23 @@ while (true)
 
         Console.Write("Adja meg a csomag azonosítóját: ");
         string azonosito = Console.ReadLine();
+        azonosito = azonosito.ToUpper();
 
-        Csomag talaltCsomag = csomagok.FirstOrDefault(
-            c => c.CsomagAzonosito == azonosito
-        );
+        Csomag talaltCsomag = csomagok.FirstOrDefault(c => c.CsomagAzonosito == azonosito);
 
         if (talaltCsomag == null)
         {
             Console.WriteLine("Nincs ilyen csomag!");
         }
         else if (talaltCsomag.Statusz == "Átvett")
-    {
-        Console.WriteLine("Az átvett csomag állapota már nem módosítható!");
-    }
+        {
+            Console.WriteLine("Az átvett csomag állapota már nem módosítható!");
+        }
         else
         {
             Console.WriteLine($"Jelenlegi állapot: {talaltCsomag.Statusz}");
             Console.WriteLine("Válasszon a műveletek közül egy szám beírásával: ");
-            Console.Write("Új állapot:\n1. A futár elindult a csomaggal\n2. A futár kiszállította a csomagot\n3. Hiba miatt a csomag el lett utasítva/vissza lett küldve ");
+            Console.Write("Új állapot:\n1. A futár elindult a csomaggal\n2. A futár kiszállította a csomagot\n3. Hiba miatt a csomag el lett utasítva és vissza lett küldve.\n");
             string allapot = Console.ReadLine();
             while (allapot != "1" && allapot != "2" && allapot != "3")
             {
@@ -259,5 +271,5 @@ while (true)
         }
 
     }
-    
+
 }

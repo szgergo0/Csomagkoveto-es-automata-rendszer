@@ -36,53 +36,50 @@ public class Csomag
 
     public bool AtmenetEngedelyezett(string ujStatusz)
     {
-    if (Statusz == "Feladva" && ujStatusz == "Kiszállítás alatt")
-    {
-        return true;
-    }
+        if (Statusz == "Feladva" && ujStatusz == "Kiszállítás alatt")
+        {
+            return true;
+        }
 
-    if (Statusz == "Kiszállítás alatt" && ujStatusz == "Kiszállított")
-    {
-        return true;
-    }
+        if (Statusz == "Kiszállítás alatt" && ujStatusz == "Kiszállított")
+        {
+            return true;
+        }
 
-    if (Statusz == "Kiszállítás alatt" && ujStatusz == "Elutasított")
-    {
-        return true;
-    }
+        if (ujStatusz == "Elutasított")
+        {
+            return true;
+        }
 
-    if (Statusz == "Kiszállított" && ujStatusz == "Átvett")
-    {
-        return true;
-    }
+        if (Statusz == "Kiszállított" && ujStatusz == "Átvett")
+        {
+            return true;
+        }
 
-    return false;
+        return false;
     }
 
     public bool StatuszFrissit(string ujStatusz)
     {
-    if (!AtmenetEngedelyezett(ujStatusz)) return false;
+        if (!AtmenetEngedelyezett(ujStatusz)) return false;
 
-    string[] sorok = File.ReadAllLines("csomagok.csv");
+        string[] sorok = File.ReadAllLines("csomagok.csv");
 
-    for (int i = 0; i < sorok.Length; i++)
-    {
-        string[] oszlopok = sorok[i].Split(';');
-
-        if (oszlopok.Length >= 7 && oszlopok[5] == CsomagAzonosito)
+        for (int i = 0; i < sorok.Length; i++)
         {
-            Statusz = ujStatusz;
-            sorok[i] = ToCsvSor();
-            File.WriteAllLines("csomagok.csv", sorok);
-            return true;
-        }
-    }
-    return false;
-    }
-    // TODO: HA A CSOMAG ATVETT ALAPPOTBA VAN NE TUDD FRISSITENI AZ ALLAPOTAT
-  
-        
+            string[] oszlopok = sorok[i].Split(';');
 
+            if (oszlopok.Length >= 7 && oszlopok[5] == CsomagAzonosito)
+            {
+                Statusz = ujStatusz;
+                sorok[i] = ToCsvSor();
+                File.WriteAllLines("csomagok.csv", sorok);
+                return true;
+            }
+        }
+        return false;
+    }
+    
     // Egy sor a csv fájlba: cimzett;meret;statusz;nyitokod;feladasIdo;csomagAzonosito;szallitasiCim
     public string ToCsvSor()
     {
