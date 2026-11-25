@@ -46,7 +46,7 @@ public class Csomag
             return true;
         }
 
-        if (ujStatusz == "Elutasított")
+        if (Statusz != "Átvett" && Statusz != "Elutasított" && ujStatusz == "Elutasított")
         {
             return true;
         }

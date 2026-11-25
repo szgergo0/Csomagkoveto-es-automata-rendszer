@@ -1,136 +1,108 @@
+# 📦 Csomagautomata
 
-# 📦 Csomagautomata rendszer
+Egyszerű, konzolos csomagkövető rendszer C#-ban. Csomagot lehet feladni, követni és átvenni, a futár pedig módosíthatja a csomag állapotát.
 
-## A programról
+Az adatok a `csomagok.csv` fájlba kerülnek, így a program újraindítás után is megtartja őket.
 
-A program egy csomagautomata működését szimulálja. Segítségével csomagokat lehet feladni, átvenni és nyomon követni, valamint a futár módosíthatja a csomagok állapotát.
+**Fejlesztők:** Fodor Benedek és Szabó Gergő
 
-## Funkciók
+---
+
+## ✨ Funkciók
 
 | Menü | Funkció | Leírás |
-| :--- | :--- | :--- |
-| 0 | Kilépés | Kilépés a programból. |
-| 1 | Új csomag feladása | Csomag regisztrálása a címzett nevével és méretével. |
-| 2 | Csomag átvétele | Csomag átvétele a követési szám és a PIN-kód segítségével. |
-| 3 | Csomagkövetés | A csomag aktuális állapotának és eseményeinek megtekintése. |
-| 4 | Csomag állapotának megváltoztatása (futár) | A csomag állapotának módosítása. |
+|:---:|---|---|
+| `0` | Kilépés | Kilépés a programból |
+| `1` | Új csomag feladása | Címzett, méret és kiszállítási cím megadása, a program azonosítót és nyitókódot generál |
+| `2` | Csomag átvétele | Átvétel az azonosító és a nyitókód megadásával |
+| `3` | Csomagkövetés | A csomag adatainak és állapotának megtekintése (azonosító és nyitókód kell hozzá) |
+| `4` | Állapotmódosítás (futár) | A futár frissíti a csomag állapotát az azonosító alapján |
 
-## Használat
-A program indításakor a következő főmenü jelenik meg:
-```text
-=========================================
-   CSOMAGAUTOMATA & KÖVETŐ RENDSZER
-=========================================
+---
 
+## 🧭 Használat
+
+Indítás után ez a menü jelenik meg:
+
+```
+----------------------------------------------
 0. Kilépés
 1. Új csomag feladása
 2. Csomag átvétele
 3. Csomagkövetés
-4. Csomag állapotának megváltoztatása (futár)
-Válassz menüpontot:
+4. Csomag állapotának megváltoztatása (Futár művelet)
+----------------------------------------------
+Válasszon a műveletek közül egy szám beírásával:
 ```
 
 ### 1. Új csomag feladása
 
-Új csomag regisztrálásához meg kell adni a címzett nevét és a csomag méretét (S, M vagy L).
-**Példa terminálkimenet:**
+Meg kell adni a címzett nevét (nem lehet üres, nem tartalmazhat számot és `;` jelet), a csomag méretét (`S`, `M` vagy `L`) és a kiszállítási címet (nem lehet üres, nem tartalmazhat `;` jelet). Hibás adatnál a program újra megkérdezi az értéket.
 
-```text
-Válassz menüpontot: 1
-
---- 1. ÚJ CSOMAG FELADÁSA (0: Vissza a főmenübe) ---
+```
 Címzett neve: Kiss Anna
-Csomag mérete (S / M / L): 0
-Visszalépés a főmenübe...
-
-Válassz menüpontot: 1
-
---- 1. ÚJ CSOMAG FELADÁSA (0: Vissza a főmenübe) ---
-Címzett neve: Kiss Anna
-Csomag mérete (S / M / L): M
-Csomag regisztrálva! Követési szám: CSG-1001 | Állapot: Feladva
+Csomag mérete (S/M/L): M
+Kiszállítási cím: Szeged, Fő utca 1.
+----------------------------------------------
+Csomag sikeresen feladva!
+Követési szám: AB-12
+A csomag nyitókódja: 04829
+----------------------------------------------
 ```
 
-A sikeres regisztráció után a rendszer egy egyedi követési számot rendel a csomaghoz.
+A **követési szám** két betűből és két számjegyből áll (pl. `AB-12`), a **nyitókód** ötjegyű. A nyitókódot a címzettnek kell megkapnia, mert ez kell az átvételhez.
 
 ### 2. Csomag átvétele
 
-A címzett a követési szám és a hozzá tartozó négyjegyű PIN-kód segítségével veheti át a csomagot az automatából.
+A csomag csak akkor vehető át, ha a státusza **Kiszállított**, és a nyitókód helyes.
 
-A `0` érték megadásával vissza lehet lépni a főmenübe.
-
-**Példa terminálkimenet:**
-
-```text
-Válassz menüpontot: 2
-
---- 2. CSOMAG ÁTVÉTELE (0: Vissza a főmenübe) ---
-Követési szám: CSG-1001
-4 jegyű nyitókód (PIN): 4829
-Sikeres átvétel! A(z) #02-es rekesz kinyílt, a csomag átvéve.
+```
+Adja meg a csomag azonosítóját: AB-12
+Adja meg a csomag nyitókódját: 04829
+Helyes nyitókód, vegye át a csomagot!
 ```
 
-Sikeres PIN-kód megadása után az automata kinyitja a csomagot tartalmazó rekeszt, és a csomag átvett állapotba kerül.
+Ha a csomag még nincs kiszállítva, már át lett véve vagy el lett utasítva, a program ezt külön jelzi.
 
 ### 3. Csomagkövetés
 
-A követési szám megadásával megtekinthető a csomag aktuális állapota és az eddig rögzített eseményei.
+Az azonosító és a nyitókód megadása után a program kiírja a csomag adatait: címzett, méret, státusz, feladás ideje, azonosító és kiszállítási cím.
 
-A `0` érték megadásával vissza lehet lépni a főmenübe.
+### 4. Állapotmódosítás (futár)
 
-**Példa terminálkimenet:**
+A futár megadja az azonosítót, a program kiírja a jelenlegi állapotot, majd a futár választhat:
 
-```text
-Válassz menüpontot: 3
-
---- 3. CSOMAGKÖVETÉS (0: Vissza a főmenübe) ---
-Követési szám: CSG-1001
-
-Csomag: CSG-1001 | Címzett: Kiss Anna | Méret: M
-Aktuális állapot: Automatában (#02-es rekesz)
-Eseménynapló:
-2026-11-23 10:35:10 - Csomag feladva
-2026-11-23 10:35:24 - Automatába helyezve (#02-es rekesz)
 ```
-
-A rendszer megjeleníti a csomag legfontosabb adatait, aktuális állapotát és az eseménynaplóban szereplő korábbi műveleteket.
-
-### 4. Csomag állapotának megváltoztatása (futár)
-
-A futár ezen a menüponton keresztül módosíthatja a csomag állapotát a követési szám megadásával.
-
-A rendszer megjeleníti a csomag jelenlegi állapotát, majd a futár kiválaszthatja az új állapotot:
-
-- **1. Szállítás alatt**
-- **2. Automatába helyezve**
-- **3. Lejárt / Visszaküldve**
-- **0. Vissza a főmenübe**
-
-Automatában történő elhelyezéskor a rendszer rekeszt rendel a csomaghoz, és generál egy négyjegyű PIN-kódot.
-
-**Példa terminálkimenet:**
-
-```text
-Válassz menüpontot: 4
-
---- 4. CSOMAG ÁLLAPOTÁNAK MEGVÁLTOZTATÁSA (0: Vissza a főmenübe) ---
-Követési szám: CSG-1001
 Jelenlegi állapot: Feladva
-  1. Kiszállítás alatt
-  2. Kiszállított
-  3. Elutasított
-Új állapot sorszáma: 2
-Csomag az automatába helyezve (#02-es rekesz). Nyitókód (PIN): 4829
+Új állapot:
+1. A futár elindult a csomaggal
+2. A futár kiszállította a csomagot
+3. Hiba miatt a csomag el lett utasítva és vissza lett küldve.
 ```
 
-### 📏 Csomagméretek
+Ha az állapotváltás nem engedélyezett (például `Feladva` → `Kiszállított`), a program hibaüzenetet ad, és nem módosít semmit.
 
-A rendszer három csomagméretet kezel:
+---
 
-- **S** – Kis csomag
-- **M** – Közepes csomag
-- **L** – Nagy csomag
+## 🔄 Csomag állapotai
 
-## 💾 Adatmentés
+```
+Feladva  →  Kiszállítás alatt  →  Kiszállított  →  Átvett
+   │                │                   │
+   └────────────────┴───────────────────┴──→  Elutasított
+```
 
-A program a csomagok adatait a `csomagok.csv` fájlban tárolja.
+- A csomag csak a fenti sorrendben haladhat.
+- **Elutasított** állapotba átvétel előtt bármikor kerülhet.
+- Az **Átvett** és az **Elutasított** csomag állapota már nem módosítható.
+- Az **Átvett** állapotot csak a címzett állíthatja be az átvétel menüpontban, a futár nem.
+
+---
+
+## 🗂️ Projekt felépítése
+
+| Fájl | Mire való |
+|---|---|
+| `Program.cs` | A menü, a bemenetek ellenőrzése és a program fő ciklusa |
+| `Csomag.cs` | A csomag osztály: adatok, állapotváltás szabályai, CSV-be mentés |
+| `csomagok.csv` | A csomagok adatai (automatikusan jön létre) |

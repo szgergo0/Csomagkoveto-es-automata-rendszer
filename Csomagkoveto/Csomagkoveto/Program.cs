@@ -51,6 +51,16 @@ bool checkMeret(string meret)
     return false;
 }
 
+bool checkCim(string cim)
+{
+    if (string.IsNullOrWhiteSpace(cim) || cim.Contains(';'))
+    {
+        return false;
+    }
+
+    return true;
+}
+
 string muveletValasztas()
 {
     string x = Console.ReadLine();
@@ -87,9 +97,15 @@ string ujNyitokod()
     return Random.Shared.Next(0, 100000).ToString("D5");
 }
 
-Console.WriteLine("==============================================");
-Console.WriteLine($"Csomagautomata rendszer | {DateTime.Now.ToString("yyyy.MM.dd HH:mm:ss")}");
-Console.WriteLine("==============================================");
+void belepeskor()
+{
+    Console.WriteLine("==============================================");
+    Console.WriteLine($"Csomagautomata rendszer | {DateTime.Now.ToString("yyyy.MM.dd HH:mm:ss")}");
+    Console.WriteLine("==============================================");
+
+}
+
+belepeskor();
 
 while (true)
 {
@@ -133,6 +149,11 @@ while (true)
 
             Console.Write("Kiszállítási cím: ");
             string cim = Console.ReadLine();
+            while (checkCim(cim) == false)
+            {
+                Console.Write("Helytelen bemenet! Kiszállítási cím: ");
+                cim = Console.ReadLine();
+            }
 
             Csomag uj = new(cimzett, csomagMeret.ToUpper(), "Feladva", nyitokod, feladasiIdo, csomagAzonosito, cim);
 
@@ -150,7 +171,7 @@ while (true)
     else if (valasztas == "2")
     {
         Console.Write("Adja meg a csomag azonosítóját: ");
-        string azonosito = Console.ReadLine();
+        string azonosito = Console.ReadLine().ToUpper();
 
         Csomag talaltCsomag = csomagok.FirstOrDefault(c => c.CsomagAzonosito == azonosito);
 
@@ -172,6 +193,10 @@ while (true)
                     talaltCsomag.StatuszFrissit("Átvett");
                     Console.WriteLine("Helyes nyitókód, vegye át a csomagot!");
                 }
+                else if (talaltCsomag.Statusz == "Elutasított")
+                {
+                    Console.WriteLine("Ez a csomag el lett utasítva, nem vehető át!");
+                }
                 else
                 {
                     Console.WriteLine("Ez a csomag még nem lett kiszállítva!");
@@ -187,7 +212,7 @@ while (true)
     } else if (valasztas == "3")
     {
         Console.Write("Adja meg a csomag azonosítóját: ");
-        string azonosito = Console.ReadLine();
+        string azonosito = Console.ReadLine().ToUpper();
 
         Csomag talaltCsomag = csomagok.FirstOrDefault(c => c.CsomagAzonosito == azonosito);
         if (talaltCsomag == null)
@@ -207,11 +232,15 @@ while (true)
                 Console.WriteLine($"Címzett: {talaltCsomag.Cimzett}");
                 Console.WriteLine($"Mérete: {talaltCsomag.Meret}");
                 Console.WriteLine($"Státusza: {talaltCsomag.Statusz}");
-                Console.WriteLine($"Myitókódja: {talaltCsomag.getNyitoKod()}");
+                Console.WriteLine($"Nyitókódja: {talaltCsomag.getNyitoKod()}");
                 Console.WriteLine($"A csomagot ekkor adták fel: {talaltCsomag.FeladasIdo}");
                 Console.WriteLine($"Azonosítója: {talaltCsomag.CsomagAzonosito}");
                 Console.WriteLine($"Kiszállítási címe: {talaltCsomag.getSzallitasiCim()}");
                 Console.WriteLine($"========================");
+            }
+            else
+            {
+                Console.WriteLine("Helytelen nyitókód!");
             }
         }
     }
