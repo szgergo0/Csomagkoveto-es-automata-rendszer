@@ -1,6 +1,8 @@
+
+
 # 📦 Csomagautomata
 
-Egyszerű, konzolos csomagkövető rendszer C#-ban. Csomagot lehet feladni, követni és átvenni, a futár pedig módosíthatja a csomag állapotát.
+Egy program amivel csomagot lehet feladni, követni és átvenni, a futár pedig módosíthatja a csomag állapotát.
 
 Az adatok a `csomagok.csv` fájlba kerülnek, így a program újraindítás után is megtartja őket.
 
@@ -37,7 +39,7 @@ Válasszon a műveletek közül egy szám beírásával:
 
 ### 1. Új csomag feladása
 
-Meg kell adni a címzett nevét (nem lehet üres, nem tartalmazhat számot és `;` jelet), a csomag méretét (`S`, `M` vagy `L`) és a kiszállítási címet (nem lehet üres, nem tartalmazhat `;` jelet). Hibás adatnál a program újra megkérdezi az értéket.
+Meg kell adni a címzett nevét, a csomag méretét (`S`, `M` vagy `L`) és a kiszállítási címet (ezeket a bemeneteket ellenőrzi a program). Hibás adatnál a program újra megkérdezi az értéket.
 
 ```
 Címzett neve: Kiss Anna
@@ -50,7 +52,7 @@ A csomag nyitókódja: 04829
 ----------------------------------------------
 ```
 
-A **követési szám** két betűből és két számjegyből áll (pl. `AB-12`), a **nyitókód** ötjegyű. A nyitókódot a címzettnek kell megkapnia, mert ez kell az átvételhez.
+A **követési szám** két betűből, egy kötőjelből és két számjegyből áll (pl. `AB-12`). A **nyitókód** ötjegyű. A nyitókódot a címzettnek kell megkapnia, mert ez kell az átvételhez.
 
 ### 2. Csomag átvétele
 
@@ -68,7 +70,22 @@ Ha a csomag még nincs kiszállítva, már át lett véve vagy el lett utasítva
 
 Az azonosító és a nyitókód megadása után a program kiírja a csomag adatait: címzett, méret, státusz, feladás ideje, azonosító és kiszállítási cím.
 
-### 4. Állapotmódosítás (futár)
+```
+Adja meg a csomag azonosítóját: XJ-49
+Adja meg a csomag nyitókódját: 12299
+========================
+A csomag adatai:
+Címzett: Kocsis Pál
+Mérete: M
+Státusza: Feladva
+Nyitókódja: 12299
+A csomagot ekkor adták fel: 2026. 11. 26. 15:53:35
+Azonosítója: XJ-49
+Kiszállítási címe: Szeged, Fő utca 8.
+========================
+```
+
+### 4. Állapotmódosítás (futár művelet)
 
 A futár megadja az azonosítót, a program kiírja a jelenlegi állapotot, majd a futár választhat:
 

@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Csomagkoveto")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+604d2d9dfba1e2ebddd34330e0fdf9c5ff79f38c")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ff5f316330715b7edaef7919f7947f15178628a6")]
 [assembly: System.Reflection.AssemblyProductAttribute("Csomagkoveto")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Csomagkoveto")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
