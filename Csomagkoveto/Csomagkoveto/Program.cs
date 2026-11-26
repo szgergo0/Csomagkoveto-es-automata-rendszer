@@ -99,9 +99,11 @@ string ujNyitokod()
 
 void belepeskor()
 {
+    Console.ForegroundColor = ConsoleColor.White;
     Console.WriteLine("==============================================");
     Console.WriteLine($"Csomagautomata rendszer | {DateTime.Now.ToString("yyyy.MM.dd HH:mm:ss")}");
     Console.WriteLine("==============================================");
+    Console.ResetColor();
 
 }
 
@@ -110,7 +112,11 @@ belepeskor();
 while (true)
 {
     Console.WriteLine("----------------------------------------------");
-    Console.WriteLine("0. Kilépés");
+    Console.ForegroundColor = ConsoleColor.DarkGray;
+    Console.Write("0. ");
+    Console.ResetColor();
+    Console.Write("Kilépés\n");
+    
     Console.WriteLine("1. Új csomag feladása");
     Console.WriteLine("2. Csomag átvétele");
     Console.WriteLine("3. Csomagkövetés");
@@ -162,16 +168,26 @@ while (true)
             File.AppendAllText("csomagok.csv", uj.ToCsvSor() + Environment.NewLine);
             
             Console.WriteLine("----------------------------------------------");
-            Console.WriteLine($"{feladasiIdo} Csomag sikeresen feladva!");
-            Console.WriteLine($"Követési szám: {uj.CsomagAzonosito}");
-            Console.WriteLine($"A csomag nyitókódja: {nyitokod}");
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine($"{feladasiIdo.ToString("yyyy.MM.dd HH:mm:ss")} Csomag sikeresen feladva!");
+            Console.ResetColor();
+            Console.Write($"Követési szám: ");
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.Write($"{uj.CsomagAzonosito}\n");
+            Console.ResetColor();
+            Console.Write($"A csomag nyitókódja: ");
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.Write($"{nyitokod}\n");
+            Console.ResetColor();
             Console.WriteLine("----------------------------------------------");
 
     }
     else if (valasztas == "2")
     {
         Console.Write("Adja meg a csomag azonosítóját: ");
+        Console.ForegroundColor = ConsoleColor.Yellow;
         string azonosito = Console.ReadLine().ToUpper();
+        Console.ResetColor();
 
         Csomag talaltCsomag = csomagok.FirstOrDefault(c => c.CsomagAzonosito == azonosito);
 
@@ -181,31 +197,43 @@ while (true)
         } else
         {
             Console.Write("Adja meg a csomag nyitókódját: ");
+            Console.ForegroundColor = ConsoleColor.Yellow;
             string nyitokod = Console.ReadLine();
+            Console.ResetColor();
             if (talaltCsomag.NyitokodEllenorzes(nyitokod))
             {
                 if (talaltCsomag.Statusz == "Átvett")
                 {
+                    Console.ForegroundColor = ConsoleColor.DarkYellow;
                     Console.WriteLine("Ez a csomag már át lett véve!");
+                    Console.ResetColor();
                 }
                 else if (talaltCsomag.Statusz == "Kiszállított")
                 {
                     talaltCsomag.StatuszFrissit("Átvett");
+                    Console.ForegroundColor = ConsoleColor.Green;
                     Console.WriteLine("Helyes nyitókód, vegye át a csomagot!");
+                    Console.ResetColor();
                 }
                 else if (talaltCsomag.Statusz == "Elutasított")
                 {
+                    Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("Ez a csomag el lett utasítva, nem vehető át!");
+                    Console.ResetColor();
                 }
                 else
                 {
+                    Console.ForegroundColor = ConsoleColor.DarkRed;
                     Console.WriteLine("Ez a csomag még nem lett kiszállítva!");
+                    Console.ResetColor();
                 }
                 
             }
             else
             {
+                Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("Helytelen nyitókód!");
+                Console.ResetColor();
             }
 
         }
