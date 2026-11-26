@@ -8,24 +8,26 @@
     "net10.0": []
   },
   "packageFolders": {
-    "C:\\Users\\Gergő\\.nuget\\packages\\": {}
+    "C:\\Users\\fodor\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\vsvri\\11\\git\\csomagkoveto-projekt\\Csomagkoveto-es-automata-rendszer\\Csomagkoveto\\Csomagkoveto\\Csomagkoveto.csproj",
+      "projectUniqueName": "F:\\HáziStuff\\CsomagkovetoGit\\Csomagkoveto-es-automata-rendszer\\Csomagkoveto\\Csomagkoveto\\Csomagkoveto.csproj",
       "projectName": "Csomagkoveto",
-      "projectPath": "D:\\vsvri\\11\\git\\csomagkoveto-projekt\\Csomagkoveto-es-automata-rendszer\\Csomagkoveto\\Csomagkoveto\\Csomagkoveto.csproj",
-      "packagesPath": "C:\\Users\\Gergő\\.nuget\\packages\\",
-      "outputPath": "D:\\vsvri\\11\\git\\csomagkoveto-projekt\\Csomagkoveto-es-automata-rendszer\\Csomagkoveto\\Csomagkoveto\\obj\\",
+      "projectPath": "F:\\HáziStuff\\CsomagkovetoGit\\Csomagkoveto-es-automata-rendszer\\Csomagkoveto\\Csomagkoveto\\Csomagkoveto.csproj",
+      "packagesPath": "C:\\Users\\fodor\\.nuget\\packages\\",
+      "outputPath": "F:\\HáziStuff\\CsomagkovetoGit\\Csomagkoveto-es-automata-rendszer\\Csomagkoveto\\Csomagkoveto\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Gergő\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\fodor\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net10.0"
       ],
       "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -67,7 +69,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.402/PortableRuntimeIdentifierGraph.json",
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.401/PortableRuntimeIdentifierGraph.json",
         "packagesToPrune": {
           "Microsoft.CSharp": "(,4.7.32767]",
           "Microsoft.VisualBasic": "(,10.4.32767]",

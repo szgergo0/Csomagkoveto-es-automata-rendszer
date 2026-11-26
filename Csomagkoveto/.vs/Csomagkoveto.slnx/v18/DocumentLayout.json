@@ -1,10 +1,10 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\b4fodben\\source\\repos\\Csomagkoveto\\",
+  "WorkspaceRootPath": "F:\\H\u00E1ziStuff\\CsomagkovetoGit\\Csomagkoveto-es-automata-rendszer\\Csomagkoveto\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{C9B2CAA1-7CAF-4DA1-99DF-DD8FA2A28556}|Csomagkoveto\\Csomagkoveto.csproj|c:\\users\\b4fodben\\source\\repos\\csomagkoveto\\csomagkoveto\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C9B2CAA1-7CAF-4DA1-99DF-DD8FA2A28556}|Csomagkoveto\\Csomagkoveto.csproj|solutionrelative:csomagkoveto\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{4C397798-15EA-D026-407E-759ECB9B907D}|Csomagkoveto\\Csomagkoveto.csproj|f:\\h\u00E1zistuff\\csomagkovetogit\\csomagkoveto-es-automata-rendszer\\csomagkoveto\\csomagkoveto\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4C397798-15EA-D026-407E-759ECB9B907D}|Csomagkoveto\\Csomagkoveto.csproj|solutionrelative:csomagkoveto\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -20,11 +20,11 @@
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\b4fodben\\source\\repos\\Csomagkoveto\\Csomagkoveto\\Program.cs",
+              "DocumentMoniker": "F:\\H\u00E1ziStuff\\CsomagkovetoGit\\Csomagkoveto-es-automata-rendszer\\Csomagkoveto\\Csomagkoveto\\Program.cs",
               "RelativeDocumentMoniker": "Csomagkoveto\\Program.cs",
-              "ToolTip": "C:\\Users\\b4fodben\\source\\repos\\Csomagkoveto\\Csomagkoveto\\Program.cs",
+              "ToolTip": "F:\\H\u00E1ziStuff\\CsomagkovetoGit\\Csomagkoveto-es-automata-rendszer\\Csomagkoveto\\Csomagkoveto\\Program.cs",
               "RelativeToolTip": "Csomagkoveto\\Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAArAAAAAAAAAA==",
+              "ViewState": "AgIAAJMBAAAAAAAAAAAAALIBAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-11-17T08:22:51.051Z",
               "EditorCaption": ""
