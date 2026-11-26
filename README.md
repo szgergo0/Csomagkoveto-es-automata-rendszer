@@ -52,7 +52,7 @@ A csomag nyitókódja: 04829
 ----------------------------------------------
 ```
 
-A **követési szám** két betűből, egy kötőjelből és két számjegyből áll (pl. `AB-12`). A **nyitókód** ötjegyű. A nyitókódot a címzettnek kell megkapnia, mert ez kell az átvételhez.
+A **követési szám** két betűből, egy kötőjelből és két számjegyből áll (pl. `AB-12`). A **nyitókód** ötjegyű.
 
 ### 2. Csomag átvétele
 
@@ -112,13 +112,3 @@ Feladva  →  Kiszállítás alatt  →  Kiszállított  →  Átvett
 - **Elutasított** állapotba átvétel előtt bármikor kerülhet.
 - Az **Átvett** és az **Elutasított** csomag állapota már nem módosítható.
 - Az **Átvett** állapotot csak a címzett állíthatja be az átvétel menüpontban, a futár nem.
-
----
-
-## 🗂️ Projekt felépítése
-
-| Fájl | Mire való |
-|---|---|
-| `Program.cs` | A menü, a bemenetek ellenőrzése és a program fő ciklusa |
-| `Csomag.cs` | A csomag osztály: adatok, állapotváltás szabályai, CSV-be mentés |
-| `csomagok.csv` | A csomagok adatai (automatikusan jön létre) |
