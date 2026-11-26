@@ -1,8 +1,8 @@
 
 
-# 📦 Csomagautomata
+# 📦 BG Parcel
 
-Egy program amivel csomagot lehet feladni, követni és átvenni, a futár pedig módosíthatja a csomag állapotát.
+A BG Parcel egy program amivel csomagot lehet feladni, követni és átvenni, a futár pedig módosíthatja a csomag állapotát.
 
 Az adatok a `csomagok.csv` fájlba kerülnek, így a program újraindítás után is megtartja őket.
 
@@ -18,7 +18,7 @@ Az adatok a `csomagok.csv` fájlba kerülnek, így a program újraindítás utá
 | `1` | Új csomag feladása | Címzett, méret és kiszállítási cím megadása, a program azonosítót és nyitókódot generál |
 | `2` | Csomag átvétele | Átvétel az azonosító és a nyitókód megadásával |
 | `3` | Csomagkövetés | A csomag adatainak és állapotának megtekintése (azonosító és nyitókód kell hozzá) |
-| `4` | Állapotmódosítás (futár) | A futár frissíti a csomag állapotát az azonosító alapján |
+| `4` | Állapotmódosítás (futár) | A futár egy jelszó megadása után frissíti a csomag állapotát az azonosító alapján |
 
 ---
 
@@ -86,8 +86,7 @@ Kiszállítási címe: Szeged, Fő utca 8.
 ```
 
 ### 4. Állapotmódosítás (futár művelet)
-
-A futár megadja az azonosítót, a program kiírja a jelenlegi állapotot, majd a futár választhat:
+Ez a művelet egy jelszóval van védve, amit csak a futárok tudnak. A helyes jelszó megadása után a futár megadja a csomag azonosítóját, a program kiírja a jelenlegi állapotot, majd a futár választhat:
 
 ```
 Jelenlegi állapot: Feladva
